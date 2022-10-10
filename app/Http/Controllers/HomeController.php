@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('homeGuest');
     }
 
     public function index()
@@ -28,7 +28,9 @@ class HomeController extends Controller
     }
 
     public function homeGuest() {
-        return view('home-guest');
+        $images = ['ahmad-binalin.jpeg','al-bayt.jpg','al-janoub.jpeg','al-rayan.jpg','al-thumama.jpg','khalifa.jpeg','lusail.jpeg','974.jpg'];
+
+        return view('home-guest',compact('images'));
     }
 
     public function myLogout(Request $request) {

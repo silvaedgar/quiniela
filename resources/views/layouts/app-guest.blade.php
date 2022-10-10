@@ -39,17 +39,12 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <img class="ml-4 mr-3" src="{{ asset('/') }}\vesil.png" width="100" height="50">
+            <img class="ml-4 mr-3" src="{{ asset('/') }}\images\logo-mundial.jpeg" width="100" height="50">
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a href="{{ route('home-guest') }}" class="nav-link" style="color: white">
                             {{ __('Inicio') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link" style="color:white">
-                            {{ __('Quienes Somos') }}
                         </a>
                     </li>
                 </ul>

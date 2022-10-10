@@ -25,7 +25,7 @@
 
 
         /* CUSTOMIZE THE CAROUSEL
-                -------------------------------------------- */
+                                                    -------------------------------------------- */
 
         /* Carousel base class */
         .carousel {
@@ -53,7 +53,7 @@
 
 
         /* RESPONSIVE CSS
-            -------------------------------------------------- */
+                                                -------------------------------------------------- */
 
         @media (min-width: 40em) {
 
@@ -67,9 +67,9 @@
         }
 
         /* @media (min-width: 62em) {
-                  .featurette-heading {
-                    margin-top: 7rem;
-                  } */
+                                                      .featurette-heading {
+                                                        margin-top: 7rem;
+                                                      } */
         }
     </style>
 @endsection
@@ -79,21 +79,24 @@
     <div class="container mt-5">
 
         <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:50%">
-            {{-- <ol class="carousel-indicators">
+            <ol class="carousel-indicators">
                 @for ($i = 0; $i < count($images); $i++)
-                    <li data-target="#myCarousel" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}"></li>
+                    <li data-target="#myCarousel" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}">
+                    </li>
                 @endfor
-            </ol> --}}
-            {{-- <div class="carousel-inner">
+            </ol>
+            <div class="carousel-inner">
                 @for ($i = 0; $i < count($images); $i++)
-                    <div class="carousel-item {{$i==0 ? 'active':''}}">
-                        <svg class="bd-placeholder-img" width="100%" height="100%"
-                        preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
-                        <rect width="100%" height="100%" fill="#777" /></svg>
-                            <img src="{{asset('images')}}\{{$images[$i]}}"/>
+                    <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
+                            role="img" focusable="false">
+                            <rect width="100%" height="100%" fill="#777" />
+                        </svg>
+                        <img src="{{ asset('images') }}\{{ $images[$i] }}" />
                     </div>
                 @endfor
-            </div> --}}
+            </div>
+
             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -105,11 +108,8 @@
         </div>
     </div>
     <div class="container mx-auto mt-3">
-        <p class="h3 text-black"> En Viveres Velasquez Silva (Vesil) encontraras variedad en Viveres, Medicinas, Alimentos,
-            Bebidas.
-            Ven a visitarnos en la Urb. La Rotaria Av. 84. La tiendita del Sr. Silva los espera atendidos por sus
-            propietarios.
-            El Sr. Silva y la Sra. Bella
+        <p class="h3 text-black"> Disfruta la Copa del Mundo Qatar-2022 participando en la Quiniela Mundial. Solo tienes que
+            registrarte y hacer tus pronosticos.
         </p>
     </div>
 @endsection

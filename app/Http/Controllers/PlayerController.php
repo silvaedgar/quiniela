@@ -39,12 +39,6 @@ class PlayerController extends Controller
             }
 
         }
-        // return response()->json([
-        //     'players' => $players,
-        //     'position' => $positions
-        // ], 200);
-
-        // $players =  $players->filter('players.activo','Activo');
         $response = ['header' => 'Jugadores Participantes', 'is_prediction' => false, 'players' => $players];
         return view('players.index', compact('response'));
     }
@@ -54,13 +48,13 @@ class PlayerController extends Controller
 
         DB::beginTransaction();
         try {
-            $this->activatePlayers($request);
+            $users_activate = $this->activatePlayers($request);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollback();
             throw $th;
         }
-        return redirect()->route('home');
+        return redirect('/home')->with(['message' => 'Se activaron los Usarios'.$users_activate]);
 
             // dd(request()->all());
     }
