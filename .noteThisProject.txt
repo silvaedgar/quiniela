@@ -1,0 +1,32 @@
+1. Modulo para la quiniela 2022 en QATAR
+2. Se instalo DOMPDF
+    Proceso para Instalar DOMPDF
+        a. composer require barryvdh/laravel-dompdf
+        b. agregar Barryvdh\DomPDF\ServiceProvider::class en \config\app.php seccion providers
+        c. agregar 'PDF' => Barryvdh\DomPDF\Facade::class en \config\app.php seccion aliases
+            opcion c es opcional sino se hace hay que usar facades use Barryvdh\DomPDF\Facade as PDF para acceder en los controllers
+        d. Publicar Libreria php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
+3. Se instalo Creative-Tim(dashboard-material) como dashBoard video tomado de https://www.youtube.com/watch?v=YM1cZ22es6o&t=45s
+(InformaticaDP)
+Proceso para instalar dashboard-material
+    a. Crear Proyecto. Ejecutar migration
+    b. Se instala el UI con composer require laravel/ui
+    c. Se instala la autenticacion con php artisan ui vue --auth
+    d. Ejecutamos npm install y npm run dev
+    e. Verificar si pide alguna instalacion adicional??
+        5.1 Si pide. Ejecutar la sentencia mostrada
+    f. Instalar la aplicacion con "composer require laravel-frontend-presets/material-dashboard"
+        (en estecaso dio error y ejecute "composer require laravel-frontend-presets/material-dashboard:*"
+    g. Instalar el scaffolding con "php artisan ui material"
+    h. Seguir con "composer dump-autoload"
+    i hacer el seeeder de la BD
+4. Se instalo el Spatie Permission ver pasos en https://spatie.be/docs/laravel-permission/v4/installation-laravel
+    con ayuda de https://www.youtube.com/watch?v=L42lLOOLB8g
+    a. En resumen se instala, se publica, se hace el migrate y se activa el use HasRoles en el Modelo User
+    b. Para usarlo se crean los roles con un seeder
+5. Se instalo Spatie Laravel activity Log para Auditoria (https://spatie.be/docs/laravel-activitylog/v3/installation-and-setup)
+    para este caso se utiliza version 3.
+6. Para el correo hay que configurar segun el servidor de correo en el archivo .env
+7. Para los mensajes en espanol del correo en el github de laravel-lang locales es crear un archivo
+    json identificado como es.json en lan de resources y en el config.app cambiar locale a 'es'.
+    (video en https://www.youtube.com/watch?v=jM_3q-FlNY8&t=439s)
