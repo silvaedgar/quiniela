@@ -5,5 +5,7 @@
 
 Quiniela para el Mundial Qatar 2022 en su fase de clasificación. Migrate genera calendario de juegos desde el archivo calendario.txt.
 El archivo config contiene los puntos a otorgar se considera el resultado del partido y los goles anotados por cada equipo.
-Realizado con Laravel 8 y Mysql. Librerias que se usan: spatie laravel-permission, spatie laravel-activitylog, dompdf 
+Realizado con Laravel 8 y Mysql. Librerias que se usan: spatie laravel-permission, spatie laravel-activitylog, dompdf.
+
+Muestra los resultados, asi como las posiciones de los participantes en vivo. 
 
