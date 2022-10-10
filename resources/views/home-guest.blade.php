@@ -105,11 +105,7 @@
         </div>
     </div>
     <div class="container mx-auto mt-3">
-        <p class="h3 text-black"> En Viveres Velasquez Silva (Vesil) encontraras variedad en Viveres, Medicinas, Alimentos,
-            Bebidas.
-            Ven a visitarnos en la Urb. La Rotaria Av. 84. La tiendita del Sr. Silva los espera atendidos por sus
-            propietarios.
-            El Sr. Silva y la Sra. Bella
+        <p class="h3 text-black"> Quiniela Qatar 2022
         </p>
     </div>
 @endsection
