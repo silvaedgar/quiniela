@@ -40,6 +40,7 @@ class MatchupController extends Controller
 
     public function closeDate() {
         $date = $this->closeDay();
-        return redirect('/home')->with(['message' => 'Cambiada Fecha de Juegos a: '.date('d-m-Y',strtotime($date))]);
+        $message = (strlen($date) > 10 ? $date : 'Cambiada Fecha de Juegos a: '.date('d-m-Y',strtotime($date)) );
+        return redirect('/home')->with(['message' => $message]);
     }
 }

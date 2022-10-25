@@ -30,3 +30,8 @@ Proceso para instalar dashboard-material
 7. Para los mensajes en espanol del correo en el github de laravel-lang locales es crear un archivo
     json identificado como es.json en lan de resources y en el config.app cambiar locale a 'es'.
     (video en https://www.youtube.com/watch?v=jM_3q-FlNY8&t=439s)
+8. https://www.youtube.com/watch?v=pE0EEZ0NYPE&t=6s (video que muestra como montar en infinityfree la aplicacion)
+9. Las impresiones con DOMPDF generaron error para ello voy a vendor/barryvdh/laravel-dompdf/src edito ServiceProvider y
+    cambio $path = realpath($app['config']->get('dompdf.public_path') ?: base_path('public')); por $path = realpath(base_path('/'));
+    eso es la linea 54 aproximadamente
+

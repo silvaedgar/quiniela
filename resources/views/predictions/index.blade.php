@@ -18,20 +18,21 @@
                     <div class="card-header card-header-primary">
                         @include('shared.header')
                     </div>
-                    <div class="card-body mt-1">
+                    <div class="card-body mx-auto">
                         <form action="{{ route('predictions.store') }}" method="post">
                             @csrf
-                            <table class="table-sm table-hover table-striped text-primary mt-2" id="data-table"
-                                style="width: 100%">
+
+                            <table class="table-hover  table-striped text-primary mt-2 table-responsive overflow-scroll"
+                                style="width: 100%; height: 400px; ">
                                 <thead class=" text-primary">
                                     {{-- class="table table-striped table-inverse table-responsive shadow"
                                 style="width:100%; background-color: #f9f9f9"> --}}
                                     <tr class="bg-info">
-                                        <th style="text-align:center">Fecha</th>
-                                        <th style="text-align:center">Grupo</th>
-                                        <th style="text-align:center">Lugar</th>
-                                        <th style="text-align:center">Stadium</th>
-                                        <th colspan="2" style="text-align:center">Paises</th>
+                                        <th style="text-align:center; ">Fecha</th>
+                                        <th style="text-align:center; ">Grupo</th>
+                                        <th style="text-align:center; ">Lugar</th>
+                                        <th style="text-align:center; ">Stadium</th>
+                                        <th colspan="2" style="text-align:center; ">Paises</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +56,7 @@
                                                 {{ $response['is_prediction'] ? $prediction->matchup->stadium->name : $prediction->stadium->name }}
                                             </td>
                                             <td style="text-align:end">
-                                                <img src="{{ $response['is_prediction'] ? $prediction->matchup->teamA->url_flag : $prediction->teamA->url_flag }}"
+                                                <img src="{{ asset('images') }}\{{ $response['is_prediction'] ? $prediction->matchup->teamA->url_flag : $prediction->teamA->url_flag }}"
                                                     width="20" height="20" alt="" />
 
                                                 {{ $response['is_prediction'] ? $prediction->matchup->teamA->name : $prediction->teamA->name }}
@@ -73,7 +74,7 @@
                                                 <input type="hidden" name="team_id_b[]"
                                                     value="{{ $response['is_prediction'] ? $prediction->matchup->team_id_b : $prediction->team_id_b }}">
                                                 {{ $response['is_prediction'] ? $prediction->matchup->teamB->name : $prediction->teamB->name }}
-                                                <img src="{{ $response['is_prediction'] ? $prediction->matchup->teamB->url_flag : $prediction->teamB->url_flag }}"
+                                                <img src="{{ asset('images') }}\{{ $response['is_prediction'] ? $prediction->matchup->teamB->url_flag : $prediction->teamB->url_flag }}"
                                                     width="20" height="20" alt="" />
 
                                             </td>

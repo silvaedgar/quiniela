@@ -17,7 +17,7 @@ class ConfigSeeder extends Seeder
         DB::table('config')->insert([
             'point_team_goals' => 1,
             'point_matchup_result' => 3,
-            'date_current' => "2022-11-21",
+            'date_current' => "2022-11-20",
             'status' => 'Activo'
         ]);
 

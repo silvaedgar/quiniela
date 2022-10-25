@@ -19,4 +19,9 @@ class Team extends Model
         return $this->hasMany(Matchup::class, 'team_id_b', 'id');
     }
 
+    public function goals(): HasMany
+    {
+        return $this->hasMany(PlayerGoal::class, 'team_id', 'id');
+    }
+
 }

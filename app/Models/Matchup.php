@@ -30,4 +30,9 @@ class Matchup extends Model
         return $this->hasMany(Prediction::class, 'matchup_id', 'id');
     }
 
+    public function goals()
+    {
+        return $this->hasMany(PlayerGoal::class, 'matchup_id', 'id');
+    }
+
 }

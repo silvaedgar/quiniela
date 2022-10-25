@@ -51,15 +51,15 @@
             clase = (disabled == '' ? 'class = "text-dark" style="font-weight: bold" ' : 'class="text-muted" ') + '>'
             contenido = '<input type = "checkbox" onclick = "processOption(' + item + ','
             contenido = contenido + "'process'," + id +
-                ')" ' + disabled + '> <span ' + clase + ' Procesar Gol</span>'
+                ",'" + "')" + '" ' + disabled + '> <span ' + clase + ' Procesar Gol</span>'
             cells[5].innerHTML = contenido
             contenido = '<input type="checkbox" onclick ="processOption(' + item + ','
             contenido = contenido + "'endgame'," + id +
-                ')" > <span class = "text-dark" style="font-weight: bold">Finalizar</span>'
+                ',"")" > <span class = "text-dark" style="font-weight: bold">Finalizar</span>'
             cells[6].innerHTML = contenido
         }
 
-        function initMatchup(matchup_id, goals_team_a, goals_team_b, option) {
+        function initMatchup(matchup_id, goals_team_a, goals_team_b, option, player, team, minute) {
             try {
                 fetch('/quiniela/public/api/process-goal', {
                         method: 'POST',
@@ -67,9 +67,12 @@
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            id: matchup_id,
+                            matchup_id: matchup_id,
                             goals_team_a: goals_team_a,
                             goals_team_b: goals_team_b,
+                            name_player: player,
+                            team_id: team,
+                            minute: minute,
                             status: option ? 'Finalizado' : 'Proceso'
                         })
                     })
@@ -84,7 +87,7 @@
 
         }
 
-        function processOption(item, option, matchup_id) {
+        function processOption(item, option, matchup_id, team) {
             console.log("OPTION ", option)
             let table = document.getElementById('matchups')
             let rows = table.rows;
@@ -97,18 +100,20 @@
             option.trim()
             switch (option) {
                 case "process": // clickeo  procesar goal
-                    initMatchup(matchup_id, goals_team_a, goals_team_b, false)
+                    var player = document.getElementById('player').value
+                    var minute = document.getElementById('minute').value
+                    initMatchup(matchup_id, goals_team_a, goals_team_b, false, player, team, minute)
                     generateCheck(item, cells, matchup_id, 'disabled')
                     break;
                 case 'button': // presiono iniciar
+                    initMatchup(matchup_id, 0, 0, false, '', 0, 0)
                     generateCheck(item, cells, matchup_id, 'disabled')
-                    initMatchup(matchup_id, 0, 0, false)
                     document.getElementById("goals_team_a" + item).disabled = false
                     document.getElementById("goals_team_b" + item).disabled = false
                     rows[item].className = backgroundRow('Proceso');
                     break;
                 case "endgame": //clickeo finalizar
-                    initMatchup(matchup_id, goals_team_a, goals_team_b, true)
+                    initMatchup(matchup_id, goals_team_a, goals_team_b, true, '', 0, 0)
                     cells[5].innerHTML = '<span> Encuentro Finalizado</span>'
                     cells[6].innerHTML = ''
 
@@ -117,7 +122,18 @@
                     rows[item].className = backgroundRow('Finalizado');
                     break;
                 default:
-                    generateCheck(item, cells, matchup_id, '')
+                    var inputs = "<td colspan='2'> <input type='text' id = 'player' width='25%' />"
+                    inputs = inputs + "<input type='number' id = 'minute' width='10%' /></td>"
+                    cells[5].innerHTML = inputs
+                    var cell = rows[item].insertCell(7);
+
+                    // generateCheck(item, cells, matchup_id, '')
+
+                    contenido = '<input type = "checkbox" onclick = "processOption(' + item + ','
+                    contenido = contenido + "'process'," + matchup_id +
+                        ", " + team + ')" > <span class="text-dark" style="font-weight: bold "> Procesar Gol </span>'
+                    console.log("CONTENIDO: ", contenido)
+                    cells[6].innerHTML = contenido
 
                     // contenido = '<input type = "checkbox" onclick = "processOption(' + item + ','
                     // contenido = contenido + "'process', " + matchup_id +

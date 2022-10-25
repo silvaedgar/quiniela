@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('positions', [MatchupApiController::class,'positions']);
 Route::post('process-goal', [MatchupApiController::class,'processGoal']);
+Route::get('predicciones', [MatchupApiController::class,'predicciones']);
 
 // Route::group(['middleware' => 'auth'], function () {
 //     Route::get('init-matchup/{id}', [MatchupController::class,'initMatchup'])->name('matchup.init');

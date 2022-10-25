@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Prediction;
 use App\Traits\LogsTrait;
-// use Spatie\Activitylog\Traits\LogsActivity;
 
 class HomeController extends Controller
 {
@@ -15,21 +14,23 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except('homeGuest');
+        $this->middleware('auth')->except('homeGuest','images');
+    }
+
+    public function images() {
+        return ['ahmad-binalin.jpeg','al-bayt.jpg','al-janoub.jpeg','al-rayan.jpg','al-thumama.jpg','khalifa.jpeg','lusail.jpeg','974.jpg'];
     }
 
     public function index()
     {
         $this->generateLog('login');
-
         $prediction = Prediction::find(auth()->user()->id);
         $response = ['init' => false, 'prediction' => $prediction];
         return view('home-auth',compact('response'));
     }
 
     public function homeGuest() {
-        $images = ['ahmad-binalin.jpeg','al-bayt.jpg','al-janoub.jpeg','al-rayan.jpg','al-thumama.jpg','khalifa.jpeg','lusail.jpeg','974.jpg'];
-
+        $images = $this->images();
         return view('home-guest',compact('images'));
     }
 
@@ -40,20 +41,11 @@ class HomeController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        return view('home-guest');
+        $images = $this->images();
+        return view('home-guest',compact('images'));
     }
 
     public function myLogin(Request $request) {
-
-        $this->generateLog('logout');
-
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return view('home-guest');
+        return "EDGAR";
     }
-
-
 }

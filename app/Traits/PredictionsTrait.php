@@ -23,9 +23,9 @@ trait PredictionsTrait {
 
     public function predictionMatchups() {
 
-            return Prediction::with('players','predictionDetails','predictionDetails.matchup',
-                    'predictionDetails.matchup.stadium','predictionDetails.matchup.teamA',
-                    'predictionDetails.matchup.teamB');
+        return Prediction::with('players','predictionDetails','predictionDetails.matchup',
+                'predictionDetails.matchup.stadium','predictionDetails.matchup.teamA',
+                'predictionDetails.matchup.teamB');
     }
 
     public function predictionPlayers($id) {
@@ -79,6 +79,7 @@ trait PredictionsTrait {
                 $response['uuid'] = $predictions[0]->uuid;
             }
         }
+
         $response['player_id'] = $player_id;
         $response['predictions'] = $prediction;
 

@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"path": ".."
+	},
+	{
+		"path": "../../../Users/silva/software/dash-board-star-admin2"
+	},
+	{
+		"path": "../../../Users/silva/software/dashboard-bootstrap/startbootstrap-sb-admin-2-gh-pages"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "startbootstrap-sb-admin-2-gh-pages"
+  }
+}

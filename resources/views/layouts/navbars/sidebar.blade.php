@@ -81,6 +81,12 @@
                             <p>{{ __('Cerrar Dia') }}</p>
                         </a>
                     </li>
+                    <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
+                        <a class="nav-link" href="{{ route('user.index') }}">
+                            <i class="material-icons">location_ons</i>
+                            <p>{{ __('Mantenimiento de Usuarios') }}</p>
+                        </a>
+                    </li>
                 @endif
             @else
                 <li> Para ver las opciones del Sistema debe realizar el Pago de Inscripcion</li>

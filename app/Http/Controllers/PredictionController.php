@@ -17,7 +17,7 @@ use App\Traits\CreateDataTrait;
 use App\Traits\PredictionsTrait;
 use App\Traits\MatchupsTrait;
 use App\Traits\LogsTrait;
-
+use Carbon\Carbon;
 use PDF;
 
 class PredictionController extends Controller
@@ -28,10 +28,16 @@ class PredictionController extends Controller
     public function index()
     {
         $response = $this->loadPredictions();
-        if (Matchup::where('status','Proceso')->orWhere('status','Finalizado')->first())
+        $date  = $this->getDate()->first();
+        $date_current = new Carbon($date->date_current);
+        $date_init = new Carbon("2022-11-21");
+
+
+        if (Matchup::where('status','Proceso')->orWhere('status','Finalizado')->first() || $date_current >= $date_init )
             $response['init'] = true;
 
         if (!$response['error']) {
+            // $response['config'] = $this->getDate();
             $response['method'] = 'prediction';
             $response['header'] = 'Pronosticos de la Quiniela. Participante: '.auth()->user()->name;
             return view('predictions.index',compact('response'));

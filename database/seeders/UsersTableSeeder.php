@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@quiniela.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('1234568'),
             'status' => 'Activo',
             'created_at' => now(),
             'updated_at' => now()

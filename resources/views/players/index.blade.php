@@ -98,22 +98,31 @@
             let tag = document.getElementsByTagName("th");
             tag[3].innerHTML = "Pronostico: " + player.players.name
             let predictions = player.prediction_details
-            console.log(predictions)
+            deleteTable(table)
 
             predictions.forEach(element => {
                 var row = table.insertRow(item + 1);
                 row.className = backgroundRow(element.matchup.status)
+                base_image = "{{ asset('images') }}/"
+
                 flag =
-                    '<img src="' + element.matchup.team_a.url_flag + '" width="20" height="20" alt="" /> '
-                createCell(element.matchup.team_a.group, row, 0, 'center')
-                createCell(element.matchup.stadium.place, row, 1, 'center')
-                createCell(element.matchup.stadium.name, row, 2, 'center')
-                createCell(flag + element.matchup.team_a.name, row, 3, 'end')
+                    '<img src="' + base_image + element.matchup.team_a.url_flag +
+                    '" width="20" height="20" alt="" /> '
+                date_game = element.matchup.game_date.substring(8, 10) + "-" + element.matchup.game_date.substring(
+                    5, 7) + "-" + element.matchup.game_date.substring(0, 4)
+
+                createCell(date_game, row, 0, 'center')
+                createCell(element.matchup.team_a.group, row, 1, 'center')
+                createCell(element.matchup.stadium.place, row, 2, 'center')
+                createCell(element.matchup.stadium.name, row, 3, 'center')
+                createCell(flag + element.matchup.team_a.name, row, 4, 'end')
                 message = element.goals_team_a + ' -- ' + element.goals_team_b + " " +
                     element.matchup.team_b.name + " "
-                flag = '<img src="' + element.matchup.team_b.url_flag + '" width="20" height="20" alt="" /> '
-                createCell(message + flag, row, 4, 'start')
-                createCell(element.points, row, 5, 'center')
+                console.log("BASE IMG: ", base_image)
+                flag = '<img src=" ' + base_image + element.matchup.team_b.url_flag +
+                    '" width="20" height="20" alt="" /> '
+                createCell(message + flag, row, 5, 'start')
+                createCell(element.points, row, 6, 'center')
 
                 item++;
             })
