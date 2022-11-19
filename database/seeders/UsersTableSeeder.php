@@ -22,7 +22,9 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('1234568'),
             'status' => 'Activo',
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ])->assignRole('Admin');
+
+        User::factory(20)->create();
     }
 }

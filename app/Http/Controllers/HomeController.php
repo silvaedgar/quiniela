@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Prediction;
+use App\Models\Team;
+
 use App\Traits\LogsTrait;
 
 class HomeController extends Controller
@@ -25,7 +27,8 @@ class HomeController extends Controller
     {
         $this->generateLog('login');
         $prediction = Prediction::find(auth()->user()->id);
-        $response = ['init' => false, 'prediction' => $prediction];
+        $teams = Team::orderBy('group')->get();
+        $response = ['init' => false, 'prediction' => $prediction, 'teams' => $teams];
         return view('home-auth',compact('response'));
     }
 

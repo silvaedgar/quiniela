@@ -16,29 +16,28 @@ class MatchupApiController extends Controller
 {
     use MatchupsTrait, PredictionsTrait;
 
-    public function processGoal(Request $request) {
-
+    public function processGoal(Request $request)
+    {
         if ($request->team_id != 0 && $request->name_player != '') {
             PlayerGoal::create($request->all());
         }
         $points = $this->updatePoints($request);
-        return Matchup::where('id',$request->matchup_id)->update([
+        return Matchup::where('id', $request->matchup_id)->update([
             'goals_team_a' => $request->goals_team_a,
             'goals_team_b' => $request->goals_team_b,
-            'status' => $request->status
-            ]);
-
+            'status' => $request->status,
+        ]);
     }
 
-    public function positions() {
+    public function positions()
+    {
         return $this->getResultsLive();
-    }    //
-
+    } //
 
     // los metodos siguiente se usaron solo de pruebas para aprender spring boot
 
-    public function predicciones() {
-
-        return Prediction::with('players','predictionDetails')->get();
+    public function predicciones()
+    {
+        return Prediction::with('players', 'predictionDetails')->get();
     }
 }

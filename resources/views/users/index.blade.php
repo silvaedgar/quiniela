@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'users', 'titlePage' => __('Modulo de Usuarios')])
+@extends('layouts.app', ['activePage' => 'maintenance', 'titlePage' => __('Usuarios')])
 
 
 @section('css')

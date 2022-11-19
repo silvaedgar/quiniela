@@ -1,4 +1,4 @@
-@extends('layouts.app-guest', ['class' => 'bg-info', 'activePage' => 'dashboard', 'titlePage' => __('Inicio')])
+@extends('layouts.app-guest', ['class' => 'bg-info', 'activePage' => 'dashboard', 'titlePage' => __('Inicio11')])
 
 @section('css')
     <style>
@@ -25,7 +25,7 @@
 
 
         /* CUSTOMIZE THE CAROUSEL
-                                                        -------------------------------------------- */
+                                                                -------------------------------------------- */
 
         /* Carousel base class */
         .carousel {
@@ -53,7 +53,7 @@
 
 
         /* RESPONSIVE CSS
-                                                    -------------------------------------------------- */
+                                                            -------------------------------------------------- */
 
         @media (min-width: 40em) {
 
@@ -67,9 +67,9 @@
         }
 
         /* @media (min-width: 62em) {
-                                                          .featurette-heading {
-                                                            margin-top: 7rem;
-                                                          } */
+                                                                  .featurette-heading {
+                                                                    margin-top: 7rem;
+                                                                  } */
         }
     </style>
 @endsection

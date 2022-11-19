@@ -16,7 +16,7 @@
                     <div class="card-body mt-1">
                         <div class="row mt-3">
                             <div class="col-sm-12">
-                                <table class="table table-striped table-responsive" style="width:90%" id="matchups">
+                                <table class="table table-striped" style="width:90%" id="matchups">
                                     <thead class="text-primary"">
                                         <tr class="bg-info">
                                             <th>Grupo</th>
@@ -88,7 +88,6 @@
         }
 
         function processOption(item, option, matchup_id, team) {
-            console.log("OPTION ", option)
             let table = document.getElementById('matchups')
             let rows = table.rows;
             let cells = rows[item].cells;
@@ -122,23 +121,14 @@
                     rows[item].className = backgroundRow('Finalizado');
                     break;
                 default:
-                    var inputs = "<td colspan='2'> <input type='text' id = 'player' width='25%' />"
-                    inputs = inputs + "<input type='number' id = 'minute' width='10%' /></td>"
+                    var inputs = "<input type='text' id = 'player' style='width:30%' />"
+                    inputs = inputs + "<input type='number' id = 'minute' style='width: 15%' />"
                     cells[5].innerHTML = inputs
-                    var cell = rows[item].insertCell(7);
-
-                    // generateCheck(item, cells, matchup_id, '')
 
                     contenido = '<input type = "checkbox" onclick = "processOption(' + item + ','
                     contenido = contenido + "'process'," + matchup_id +
                         ", " + team + ')" > <span class="text-dark" style="font-weight: bold "> Procesar Gol </span>'
-                    console.log("CONTENIDO: ", contenido)
                     cells[6].innerHTML = contenido
-
-                    // contenido = '<input type = "checkbox" onclick = "processOption(' + item + ','
-                    // contenido = contenido + "'process', " + matchup_id +
-                    //     ')" > <span class="text-dark" style="font-weight: bold"> Procesar Gol </span>'
-                    // cells[5].innerHTML = contenido
             }
 
         }

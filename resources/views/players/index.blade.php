@@ -3,26 +3,40 @@
 @section('css')
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css" rel="stylesheet">
+
+    <style>
+        th {
+            position: sticky;
+            top: 0px;
+        }
+    </style>
 @endsection
 
 @section('content')
     <div class="content" style="margin-top: 40px">
         <div class="row mt-2">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card" style="height: 80vh">
                     <div class="card-header card-header-primary">
                         @include('shared.header')
                     </div>
                     <div class="card-body mt-1">
                         <div class="row">
-                            <div class="col-sm-3">
-                                <a href="{{ route('players.position') }}">
-                                    Imprimir Posiciones
-                                </a>
-                                <table class="table-sm table-hover text-primary mt-2" id="table-players"
-                                    style="width: 100%">
-                                    <thead class=" text-primary">
-                                        <tr class="bg-info">
+
+                            <div class="col-sm-10 col-md-4" style="height: 76vh; overflow: scroll; ">
+                                <table class="table-hover text-primary mt-2" id="table-players"
+                                    style="width: 100%; height: auto ">
+                                    <thead class=" text-primary" style="position: sticky; top:0px">
+                                        <tr>
+                                            <th colspan="3"
+                                                style="top:0px; background: red; text-align:center; text-decoration-style:solid ">
+                                                <a class="text-white" href="{{ route('players.position') }}"> <i
+                                                        class="fa fa-print" aria-hidden="true"></i>
+                                                    Imprimir Posiciones
+                                                </a>
+                                            </th>
+                                        </tr>
+                                        <tr class="bg-info " style="top: 0px">
                                             <th style="text-align:center">Nombre Jugador</th>
                                             <th style="text-align:center">Posicion</th>
                                             <th style="text-align:center">Puntos</th>
@@ -47,27 +61,29 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="ml-3 col-sm-2 bg-danger text-white"> Finalizado</div>
-                                    <div class="ml-3 col-sm-2 bg-warning"> En Proceso</div>
-                                    <div class="ml-3 col-sm-2"> Pendiente</div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="row mb-2">
+                                    <div class="ml-3 col-sm-3 bg-danger text-white"> Finalizado</div>
+                                    <div class="ml-3 col-sm-3 bg-warning"> En Proceso</div>
+                                    <div class="ml-3 col-sm-3 "> Pendiente</div>
                                 </div>
+                                <div class="row" style="height: 65vh; overflow-y: scroll;">
+                                    <table class="table-striped table-hover text-primary " id="table-predictions-player"
+                                        style="width: 100%; ">
+                                        <thead class="text-primary">
+                                            <tr class="bg-info">
+                                                <th colspan="6" id="label_prediction" style="text-align:center; ">
+                                                    Pronosticos
+                                                </th>
+                                                <th colspan="2" style="text-align:center;">Ptos</th>
 
-                                <table class="table-sm table-striped table-hover text-primary mt-2"
-                                    id="table-predictions-player" style="width: 100%">
-                                    <thead class=" text-primary">
-                                        <tr class="bg-info">
-                                            <th colspan="5" id="label_prediction" style="text-align:center">Pronosticos
-                                            </th>
-                                            <th style="text-align:center">Ptos Obtenidos </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                                </div>
                             </div>
 
                         </div>
@@ -96,10 +112,17 @@
             let balance = 0;
             let table = document.getElementById('table-predictions-player')
             let tag = document.getElementsByTagName("th");
-            tag[3].innerHTML = "Pronostico: " + player.players.name
+            console.log("TABKE", table, "TAGS", tag)
+            table.classList.add("mt-2")
+            tag[4].innerHTML = "Pronostico: " + player.players.name
+            tag[4].style = "position: sticky; top: 0px; text-align:center;"
+            tag[4].classList.add("bg-info")
+            tag[5].innerHTML = "Ptos "
+            tag[5].classList.add("bg-info")
+            tag[5].style = "position: sticky; top: 0px; text-align:center;"
+
             let predictions = player.prediction_details
             deleteTable(table)
-
             predictions.forEach(element => {
                 var row = table.insertRow(item + 1);
                 row.className = backgroundRow(element.matchup.status)
@@ -121,8 +144,14 @@
                 console.log("BASE IMG: ", base_image)
                 flag = '<img src=" ' + base_image + element.matchup.team_b.url_flag +
                     '" width="20" height="20" alt="" /> '
+                result = ''
+                if (element.matchup.status != 'Pendiente') {
+                    result = "(" + element.matchup.goals_team_a + " -- " + element.matchup.goals_team_b + ")"
+                }
                 createCell(message + flag, row, 5, 'start')
-                createCell(element.points, row, 6, 'center')
+                createCell(result, row, 6, 'center')
+
+                createCell(element.points, row, 7, 'center')
 
                 item++;
             })

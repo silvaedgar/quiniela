@@ -62,10 +62,10 @@
         {{ $response['is_prediction'] ? $prediction->matchup->teamB->name : $prediction->teamB->name }}
         <img src="{{ asset('images') }}/{{ $response['is_prediction'] ? $prediction->matchup->teamB->url_flag : $prediction->teamB->url_flag }}"
             width="20" height="20" alt="" />
-        @if ($response['method'] != 'results' && ($prediction->goals_team_b != 0 || $prediction->goals_team_a != 0))
-            <input type="hidden" id="expand{{ $loop->iteration }}">
-            &nbsp; &nbsp; <span style="font-weight: bold">+</span>
-        @endif
+        {{-- @if ($response['method'] != 'results' && ($prediction->goals_team_b != 0 || $prediction->goals_team_a != 0)) --}}
+        <span style="font-weight: bold" id="expand{{ $loop->iteration }}">
+            {{ $response['method'] != 'results' && ($prediction->goals_team_b != 0 || $prediction->goals_team_a != 0) ? '+' : '' }}</span>
+
     </td>
     @if ($response['method'] == 'results')
         {{-- va a registrar resultados de un juego --}}

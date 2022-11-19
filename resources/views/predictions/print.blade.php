@@ -48,7 +48,8 @@
                         {{ $prediction->matchup->teamA->group }}
                     </td>
                     <td> {{ $prediction->matchup->stadium->name }} </td>
-                    <td style="text-align:end"> <img src="{{ $prediction->matchup->teamA->url_flag }}" width="20"
+                    <td style="text-align:end"> <img
+                            src="{{ asset('images') }}/{{ $prediction->matchup->teamA->url_flag }}" width="20"
                             height="15" alt="" />
                         {{ $prediction->matchup->teamA->name }}
                     </td>

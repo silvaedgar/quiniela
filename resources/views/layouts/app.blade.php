@@ -19,6 +19,14 @@
     <link href="{{ asset('material') }}/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
+    {{-- <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style> --}}
+
 </head>
 
 <body class="{{ $class ?? '' }}">
@@ -31,7 +39,7 @@
     @guest()
         @include('layouts.page_templates.guest')
     @endguest
-    @if (auth()->check())
+    {{-- @if (auth()->check())
         <div class="fixed-plugin">
             <div class="dropdown show-dropdown">
                 <a href="#" data-toggle="dropdown">
@@ -107,7 +115,7 @@
                 </ul>
             </div>
         </div>
-    @endif
+    @endif --}}
     <!--   Core JS Files   -->
     <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
@@ -115,8 +123,6 @@
     <script src="{{ asset('material') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!-- Plugin for the momentJs  -->
     <script src="{{ asset('material') }}/js/plugins/moment.min.js"></script>
-    <!--  Plugin for Sweet Alert -->
-    <script src="{{ asset('material') }}/js/plugins/sweetalert2.js"></script>
     <!-- Forms Validations Plugin -->
     <script src="{{ asset('material') }}/js/plugins/jquery.validate.min.js"></script>
     <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->

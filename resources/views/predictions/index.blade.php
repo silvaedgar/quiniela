@@ -18,15 +18,11 @@
                     <div class="card-header card-header-primary">
                         @include('shared.header')
                     </div>
-                    <div class="card-body mx-auto">
+                    <div class="card-body mx-auto w-100" style="height: 75vh; overflow:scroll">
                         <form action="{{ route('predictions.store') }}" method="post">
                             @csrf
-
-                            <table class="table-hover  table-striped text-primary mt-2 table-responsive overflow-scroll"
-                                style="width: 100%; height: 400px; ">
+                            <table class="table-hover table-striped text-primary mt-2 " style="width: 100%; ">
                                 <thead class=" text-primary">
-                                    {{-- class="table table-striped table-inverse table-responsive shadow"
-                                style="width:100%; background-color: #f9f9f9"> --}}
                                     <tr class="bg-info">
                                         <th style="text-align:center; ">Fecha</th>
                                         <th style="text-align:center; ">Grupo</th>
@@ -107,4 +103,5 @@
                 </div>
             </div>
         </div>
-    @endsection('content')
+    </div>
+@endsection('content')
