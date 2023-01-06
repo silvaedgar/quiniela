@@ -12,24 +12,25 @@ use App\Models\User;
 use App\Traits\PredictionsTrait;
 use App\Traits\MatchupsTrait;
 use App\Traits\PlayersTrait;
+use App\Traits\LogsTrait;
+
 use PDF;
 
 class PlayerController extends Controller
 {
-    use PredictionsTrait, MatchupsTrait, PlayersTrait;
+    use PredictionsTrait, MatchupsTrait, PlayersTrait, LogsTrait;
 
     public function __construct()
     {
         // registrado en kernel de http controller
         $this->middleware('user.active');
-        $this->middleware('role.admin')->except('index', 'position');
+        $this->middleware('role.admin')->except('index', 'position', 'printPredictions');
     }
 
     public function index()
     {
         $players = $this->predictionPlayers(0)->get();
-        $players = $this->sortMatchups($players, ['players.name', 'predictionDetails.matchup.game_date']);
-
+        // $players = $this->sortMatchups($players, ['players.name', 'predictionDetails.matchup.game_date']);
         $positions = $this->getPositions()->get();
         foreach ($players as $index => $player) {
             foreach ($positions as $index1 => $position) {
@@ -39,7 +40,8 @@ class PlayerController extends Controller
                 }
             }
         }
-        $response = ['header' => 'Jugadores Participantes', 'is_prediction' => false, 'players' => $players];
+        $players = $this->sortMatchups($players, ['position', 'predictionDetails.matchup.game_date']);
+        $response = ['header' => 'Jugadores Participantes', 'is_prediction' => false, 'players' => $players, 'method' => 'players'];
         return view('players.index', compact('response'));
     }
 
@@ -82,5 +84,17 @@ class PlayerController extends Controller
 
         $pdf = PDF::loadView('players.positions', ['positionPlayers' => $response]);
         return $pdf->download('positions' . $response['current_date']->date_current . '.pdf');
+    }
+
+    public function printPredictions()
+    {
+        $players = $this->predictionPlayers(0)->get();
+        $players = $this->sortMatchups($players, ['players.name', 'predictionDetails.matchup.game_date']);
+
+        $log = $this->generateLog('print', ['prediction' => 'Todas', 'user' => auth()->user()->id]);
+        $file = 'predictions-players.pdf';
+
+        $pdf = PDF::loadView('players.print', ['predictions' => $players]);
+        return $pdf->download($file);
     }
 }

@@ -34,5 +34,5 @@ Proceso para instalar dashboard-material
 
 9. Las impresiones con DOMPDF generaron error para ello voy a vendor/barryvdh/laravel-dompdf/src edito ServiceProvider y
     cambio $path = realpath($app['config']->get('dompdf.public_path') ?: base_path('public')); por $path = realpath(base_path('/'));
-    eso es la linea 54 aproximadamente
+    eso es la linea 54 aproximadamente esto es en infinityfreeapp.com
 

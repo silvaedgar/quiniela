@@ -47,13 +47,13 @@
                                             $rows = count($response['players']);
                                         @endphp
                                         @foreach ($response['players'] as $i => $player)
-                                            <tr id="row{{ $i }}"
+                                            <tr id="row{{ $i }}" style="cursor:pointer"
                                                 onclick="fillTable({{ $player }}, {{ $i }}, {{ $rows }})">
+
                                                 <td style="text-align:center">
-                                                    {{-- <input id="players_id[]" value="{{ $player->player_id }}" /> --}}
                                                     {{ $player->players->name }}
                                                 </td>
-                                                <td> {{ $player->position }} </td>
+                                                <td> {{ $loop->iteration }} </td>
                                                 <td> {{ $player->points }} </td>
 
                                             </tr>

@@ -1,52 +1,52 @@
 @extends('layouts.app', ['activePage' => 'sales', 'titlePage' => __('Modulo de Resultados')])
 
 @section('css')
-    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
-    <div class="content" style="margin-top: 40px">
-        <div class="row mt-2">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        @include('shared.header')
-                    </div>
-                    <div class="card-body mt-1">
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <table class="table table-striped" style="width:90%" id="matchups">
-                                    <thead class="text-primary"">
-                                        <tr class="bg-info">
-                                            <th>Grupo</th>
-                                            <th>Ciudad</th>
-                                            <th>Stadium</th>
-                                            <th colspan="2" class="text-center">Paises</th>
-                                            <th colspan="2" class="text-center">Opciones</th>
+<div class="content" style="margin-top: 40px">
+    <div class="row mt-2">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    @include('shared.header')
+                    0 </div>
+                <div class="card-body mt-1">
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                            <table class="table table-striped" style="width:90%" id="matchups">
+                                <thead class="text-primary"">
+                                        <tr class=" bg-info">
+                                    <th>Grupo</th>
+                                    <th>Ciudad</th>
+                                    <th>Stadium</th>
+                                    <th colspan="2" class="text-center">Paises</th>
+                                    <th colspan="2" class="text-center">Opciones</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($response['matchups'] as $i => $prediction)
-                                            @include('shared.table-details-matchups')
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($response['matchups'] as $i => $prediction)
+                                    @include('shared.table-details-matchups')
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection('content')
 
 @push('js')
-    <script src="{{ asset('js') }}/functions.js"></script>
-    <script>
-        function generateCheck(item, cells, id, disabled) {
+<script src="{{ asset('js') }}/functions.js"></script>
+<script>
+    function generateCheck(item, cells, id, disabled) {
 
             clase = (disabled == '' ? 'class = "text-dark" style="font-weight: bold" ' : 'class="text-muted" ') + '>'
             contenido = '<input type = "checkbox" onclick = "processOption(' + item + ','
@@ -132,5 +132,5 @@
             }
 
         }
-    </script>
+</script>
 @endpush

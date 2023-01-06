@@ -58,8 +58,8 @@
                         {{ $prediction->goals_team_b }} </td>
                     <td style="text-align: start; margin-left:-30px">
                         {{ $prediction->matchup->teamB->name }}
-                        <img src="{{ $prediction->matchup->teamB->url_flag }}" width="20" height="15"
-                            alt="" />
+                        <img src="{{ asset('images') }}/{{ $prediction->matchup->teamB->url_flag }}" width="20"
+                            height="15" alt="" />
                     </td>
                 </tr>
             @endforeach
